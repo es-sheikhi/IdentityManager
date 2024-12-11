@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicaionDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration["ConectionStrings:IdentityDb"]);
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:IdentityDb"]);
 });
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().
