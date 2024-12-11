@@ -1,7 +1,20 @@
+using IdentityManager.Data;
+using IdentityManager.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicaionDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration["ConectionStrings:IdentityDb"]);
+});
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().
+    AddEntityFrameworkStores<ApplicaionDbContext>();
 
 var app = builder.Build();
 
